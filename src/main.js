@@ -6,6 +6,9 @@ import './plugins/element.js'
 import axios from 'axios'
 import AOS from "../node_modules/aos/dist/aos.js"
 import "../node_modules/aos/dist/aos.css"
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+Vue.use(mavonEditor)
 Vue.use(AOS)
 AOS.init();
 
@@ -19,10 +22,10 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 
 
 axios.interceptors.request.use(config => {
-  console.log("请求头中加token",config);
+  console.log("请求头中加token");
 
   if(window.sessionStorage.getItem('token')){
-    config.headers.Authorization = window.sessionStorage.getItem('token');
+    config.headers.Authorization ="JWT" + " " + window.sessionStorage.getItem('token');
   }
   return config;
 },
@@ -40,3 +43,10 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+
+import Router from 'vue-router'
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}

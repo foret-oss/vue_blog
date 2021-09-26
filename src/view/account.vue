@@ -1,5 +1,5 @@
 <template>
-    <div>BlogEdit</div>
+    <div>账户信息</div>
 </template>
 
 <script>

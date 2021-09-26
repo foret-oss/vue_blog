@@ -1,9 +1,9 @@
 <template>
   <div class="login_container">
     <div data-aos="zoom-in-down" data-aos-duration="5000">
-      Welcome to MyBlog~
+      it's me
     </div>
-    <div class="login_box">
+    <div class="login_box" :class="{isClick: isClick, isClickOver: !isClick}">
       <!--登录表单-->
       <el-form
         ref="loginFormRef"
@@ -91,6 +91,7 @@ export default {
         checkPass: "",
         phonenumber: "",
       },
+      isClick: false,
       //表单验证规则
       loginformRules: {
         userName: [
@@ -130,8 +131,23 @@ export default {
       this.$refs.loginFormRef.resetFields();
     },
     register() {
+      this.isClick = true;
       this.$refs.loginFormRef.validate(async (valid) => {
-        if (!valid) return;
+        if (!valid) {
+          setTimeout(() => {
+            this.$msb
+              .alert("输入格式不正确！", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                showCancelButton: false,
+                type: "warning",
+              })
+              .then(() => {
+                this.isClick = false;
+              })
+              .catch(() => { this.click = false;});
+          }, 1500);
+          return;}
 
         this.$axios
           .post("/register", {
@@ -143,7 +159,7 @@ export default {
             if (res.data.code == 454)
               return this.$message.error("用户已存在，注册失败！");
             this.$message.success("注册成功！");
-            this.$router.push("/blogs");
+            this.$router.push("/login");
           })
           .catch(function (err) {
             console.log("注册失败", err);
@@ -159,17 +175,23 @@ export default {
 
 <style scoped>
 .login_container {
-  background: url("../assets/background.png");
+  background: url("../assets/star.png");
   background-size: cover;
   color: rgb(75, 65, 52);
   font-size: 30px;
   text-align: center;
   height: 44rem;
+  perspective: 500;
+  -webkit-perspective: 500;
 }
 .login_box {
   width: 400px;
   height: 330px;
-  background-color: #fff;
+  background: linear-gradient(
+    270deg,
+    rgb(126, 124, 124) 0,
+    rgb(19, 18, 18) 100%
+  );
   border-radius: 15px;
   position: absolute;
   top: 50%;
@@ -192,5 +214,41 @@ export default {
   display: flex;
   width: 100%;
   justify-content: flex-start;
+}
+.isClick{
+  animation: animal3 1s linear 1 forwards;
+  pointer-events: none;
+}
+.isClickOver{
+  animation: animal33 1s linear 1 forwards;
+  pointer-events: auto;
+}
+@keyframes animal3 {
+  0% {
+    transform: rotateX(0deg);
+
+  }
+  50% {
+    transform: rotateX(50deg);
+    transform-origin: center bottom;
+  }
+  100% {
+    transform: rotateX(70deg) translate(-190px, -400px) scale(1.2);
+    transform-origin: center bottom;
+  }
+}
+@keyframes animal33 {
+  0% {
+    transform: rotateX(70deg) translate(-190px, -400px) scale(1.2);
+    transform-origin: center bottom;
+  }
+  50% {
+    transform: rotateX(0deg);
+    transform-origin: center bottom;
+  }
+  100% {
+    transform: rotateX(0deg) translateX(0, 100px) scale(1);
+    transform-origin: center bottom;
+  }
 }
 </style>
