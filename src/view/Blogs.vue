@@ -39,6 +39,13 @@
           </el-timeline-item>
         </div>
       </el-timeline>
+
+      <el-pagination
+        :page-size="20"
+        :pager-count="11"
+        layout="prev, pager, next"
+        :total="1000">
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -58,7 +65,7 @@ export default {
     details(index) {
       //console.log("id",this.blogs[index].fields.id);
       const blogId = this.blogs[index].fields.id;
-      this.$router.push("/blogDetail/" + blogId);
+      this.$router.push("/lastblog/" + blogId);
     },
 
     update(index) {
@@ -162,6 +169,7 @@ export default {
 .block {
   padding-left: 10px;
   padding-right: 50px;
+  padding-top: 300px;
 }
 .el-card {
   background: rgb(241, 241, 243);

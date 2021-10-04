@@ -5,10 +5,13 @@ import Blogs from '../view/Blogs.vue'
 import BlogEdit from '../view/BlogEdit.vue'
 import BlogDetail from '../view/BlogDetail.vue'
 import Register from '../components/register.vue'
-import ThreeDlogin from '../components/3Dlogin.vue'
 import Myuser from '../view/myuser.vue'
-import Message from '../view/message.vue'
+import changeMessage from '../view/changeMessage.vue'
 import Account from '../view/account.vue'
+import LastBlog from '../view/lastblog.vue'
+import Drafts from '../view/drafts.vue'
+import QandA from '../components/QandA.vue'
+import Message from '../view/message.vue'
 
 Vue.use(VueRouter)
 
@@ -28,11 +31,6 @@ const routes = [
     name: 'Register',
     component: Register
   },
-  {
-    path: '/ThreeDlogin',
-    name: 'ThreeDlogin',
-    component: ThreeDlogin
-  },
       { path: '/blogs', component: Blogs},
       {
         path: '/blogEdit',
@@ -42,13 +40,22 @@ const routes = [
       {
         path: '/blogDetail/:blogId',
         name: 'BlogDetail',
-        component: BlogDetail
+        component: BlogDetail,
+        redirect:'/lastblog/-1',
+        children: [
+          { path: '/lastblog/:blogId', component: LastBlog},
+          { path: '/drafts', component: Drafts},
+          { path: '/QandA', component: QandA},
+        ]
       },
+        
       {
         path: '/myuser',
         name: 'Myuser',
         component: Myuser,
+        redirect:'/changeMessage',
         children: [
+          { path: '/changeMessage', component: changeMessage},
           { path: '/message', component: Message},
           { path: '/account', component: Account},
         ]

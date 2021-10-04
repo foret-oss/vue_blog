@@ -1,10 +1,13 @@
 <template>
+<div>
+  <div class="avatarBackground">
+        <div class="avatarBox" @click="login">
+          <img src="../assets/bear.jpg" class="avatar">
+       </div>
+       <p class="username"> {{this.user.username}}</p>
+  </div>
+   
   <div class="header">
-    <div class="user">
-      <el-avatar :size="50" :src="user.avatar"></el-avatar>
-      <div class="usename">{{ user.username }}</div>
-    </div>
-      <div class="block">
         <span @click="click3" :class="{page: page3}">首页</span>
         <el-divider direction="vertical"></el-divider>
         <span @click="click2" :class="{page: page2}">编辑博客</span>
@@ -12,10 +15,9 @@
         <span @click="click1" :class="{page: page1}">博客管理</span>
         <el-divider direction="vertical"></el-divider>
         <span v-show="! hasLogin" @click="login" :class="{page: page4}">登录</span>
-        <span v-show="hasLogin" @click="GotoUser" :class="{page: page4}">个人中心</span>
-      </div>
-    <router-view></router-view>
+        <span v-show="hasLogin" @click="GotoUser" :class="{page: page4}">个人中心</span> 
   </div>
+</div>
 </template>
 
 <script>
@@ -77,7 +79,8 @@ export default Vue.extend ({
 
     var path = this.$route.path;
     var id = this.$route.params.blogId;
-    console.log("当前路径及ID",path, id);
+    console.log("当前路径及ID",path,id);
+    //console.log("首页路径", "/lastblog/" + id );
     if(path == "/blogs" || id >= 0) {
       this.page1 = true;
       this.page2 = false;
@@ -88,12 +91,13 @@ export default Vue.extend ({
       this.page1 = false;
       this.page3 = false;
     }
-    else if(path == "/blogDetail/0" || id >= 0) {
+    else if(path == "/lastblog/" + id  || path == "/drafts" || path == "/QandA") {
+      console.log("首页路径",path);
       this.page3 = true;
       this.page1 = false;
       this.page2 = false;
     }
-    else if(path == "/myuser" || id >= 0) {
+    else if(path == "/changeMessage" || path == "/message"|| path == "/account" || id >= 0) {
       this.page4 = true;
       this.page1 = false;
       this.page2 = false;
@@ -103,25 +107,58 @@ export default Vue.extend ({
 </script>
 
 <style scoped>
-.block {
-  max-width: 960px;
-  margin: 0 auto;
-  text-align: center;
-  transform: translate(0,-55px);
-}
-.user{
+.avatarBackground{
+  position: fixed;
   display: flex;
-  flex-direction: column;
+  background:  rgb(31, 40, 49);
+  min-height: 80px;
+  min-width: 98%;
   text-align: center;
-  width: 100px;
-  padding-left: 20px;
+  justify-content: center;
 }
-.usename{
+.header{
   display: flex;
-  transform: translate(0px);
-  text-align: left;
+  position: fixed;
+  min-height: 50px;
+  min-width: 98%;
+  background: white;
+  border-radius: 10px;
+  padding-top: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+  transform: translate(0px, 180px);
+  font-size: 25px;
+  font-family:'Times New Roman', Times, serif;
+  text-align: center;
+  justify-content: center;
+}
+
+.username{
+  position: absolute;
+  transform: translate(0px, 110px);
+  font-size: 20px;
 }
 .page{
   font-weight: bolder;
+}
+
+.avatarBox {
+  display: flex;
+  width: 80px;
+  height: 70px;
+  transform: translate(0px, 40px);
+  
+  
+  border: 1px solid #eee;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 0 5px #ddd;
+  background-color: rgb(246, 246, 248);
+  
+}
+.avatarBox > .avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 </style>

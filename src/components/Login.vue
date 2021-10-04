@@ -152,17 +152,19 @@ export default {
           }, 1500);
 
           return;
-          } else if (res.data.code === 456)
+          } 
+          else if (res.data.code === 456)
               return this.$message.error("密码不正确！");
 
             setTimeout(() => {
                 this.hasClick = false;
                 this.goBack = true;
-            }, 22500);
+            }, 2500);
 
             this.$message.success("登录成功！");
             window.sessionStorage.setItem("token", res.data.token);
             window.sessionStorage.setItem("username", this.loginForm.username);
+            window.sessionStorage.setItem("password", this.loginForm.password);
             this.$router.push("/blogs");
           })
           .catch(function (err) {
