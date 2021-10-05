@@ -1,11 +1,13 @@
 <template>
 <div>
   <div class="avatarBackground">
+    <div class="avatarbottom"></div>
         <div class="avatarBox" @click="login">
           <img src="../assets/bear.jpg" class="avatar">
        </div>
        <p class="username"> {{this.user.username}}</p>
   </div>
+  
    
   <div class="header">
         <span @click="click3" :class="{page: page3}">首页</span>
@@ -116,6 +118,29 @@ export default Vue.extend ({
   text-align: center;
   justify-content: center;
 }
+.avatarBox {
+  display: flex;
+  width: 80px;
+  height: 70px;
+  transform: translate(0px, 40px);
+  border: 1px solid #eee;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 0 5px #ddd;
+  background-color: rgb(246, 246, 248);
+  
+}
+.avatarBox > .avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.username{
+  position: absolute;
+  transform: translate(0px, 110px);
+  font-size: 20px;
+}
+
 .header{
   display: flex;
   position: fixed;
@@ -132,33 +157,16 @@ export default Vue.extend ({
   text-align: center;
   justify-content: center;
 }
-
-.username{
-  position: absolute;
-  transform: translate(0px, 110px);
-  font-size: 20px;
-}
 .page{
   font-weight: bolder;
 }
-
-.avatarBox {
-  display: flex;
-  width: 80px;
-  height: 70px;
-  transform: translate(0px, 40px);
-  
-  
-  border: 1px solid #eee;
-  border-radius: 50%;
-  padding: 5px;
-  box-shadow: 0 0 5px #ddd;
-  background-color: rgb(246, 246, 248);
-  
-}
-.avatarBox > .avatar {
+.avatarbottom{
+  position: fixed;
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
+  height: 110px;
+  margin-top: 80px;
+  background: #fff;
+  top: 0;
 }
+
 </style>

@@ -88,6 +88,7 @@ export default {
   background: rgb(235, 237, 238);
   margin-left: 20px;
   margin-top: -20px;
+  margin-right: 50px;
   border-radius: 5px;
   height: 100px;
   max-width: 1400px;
@@ -124,6 +125,7 @@ export default {
 .el-form{
     margin-top: -150px;
     margin-left: 20px;
+    margin-right: 50px;
     background:rgb(235, 237, 238) ;
     padding: 10px;
     border-radius: 5px;

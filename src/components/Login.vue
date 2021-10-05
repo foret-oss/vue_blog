@@ -1,5 +1,14 @@
 <template>
-  <div class="login_container">
+  <div :class="{login_container : !vedioCanPlay}">
+
+
+  <div class="video-container">
+    <video :style="fixStyle" autoplay loop muted class="fillWidth" v-on:canplay="canplay">
+      <source src="../assets/video/womanBackground.mp4" type="video/mp4"/>
+    </video>
+  </div>
+
+
     <div data-aos="zoom-in-up" data-aos-duration="3000">it's me</div>
     <!--登录表单-->
     <div
@@ -79,6 +88,8 @@ export default {
       },
       hasClick: false,
       goBack: false,
+      vedioCanPlay: false,
+      fixStyle:'',
 
       //表单验证规则
       loginformRules: {
@@ -99,6 +110,9 @@ export default {
     };
   },
   methods: {
+    canplay() {
+  this.vedioCanPlay = true
+  },
     //点击重置按钮，重置登录表单
     resetLoginForm() {
       this.$refs.loginFormRef.resetFields();
@@ -180,38 +194,84 @@ export default {
       this.$router.push("/register");
     },
   },
+
+
+  mounted: function() { //屏幕自适应
+  window.onresize = () => {
+  const windowWidth = document.body.clientWidth
+  const windowHeight = document.body.clientHeight
+  const windowAspectRatio = windowHeight / windowWidth
+  let videoWidth
+  let videoHeight
+  if (windowAspectRatio < 0.5625) {
+   videoWidth = windowWidth
+   videoHeight = windowHeight
+   this.fixStyle = {
+   height: windowWidth * 0.5625 + 'px',
+   width: windowWidth + 'px',
+   'margin-bottom': (windowHeight - videoHeight) / 2 + 'px',
+   'margin-left': 'initial'
+   }
+  } 
+  else {
+   videoHeight = windowHeight
+   videoWidth = windowWidth
+   this.fixStyle = {
+   height: windowHeight + 'px',
+   width: windowHeight / 0.5625 + 'px',
+   'margin-left': (windowWidth - videoWidth) / 2 + 'px',
+   'margin-bottom': 'initial'
+   }
+  }
+  }
+  window.onresize()
+ }
+
+
+
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .login_container {
   width: 100%;
-  color: rgb(212, 145, 57);
+  min-height: 40rem;
   background: url("../assets/star.png");
   background-size: cover;
-  height: 44rem;
-  font-size: 40px;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: bolder;
+  
   text-align: center;
-  padding-top: 3%;
   perspective: 500;
   -webkit-perspective: 500;
 }
+
+.video-container {
+  height: 100%;
+  overflow: hidden;
+ }
+ .fillWidth {
+   height: 100%;
+   width: 100%;
+ }
+ 
 .login_form {
   width: 330px;
   height: 239px;
-  background: linear-gradient(
-    230deg,
-    rgb(145, 143, 143) 0,
-    rgb(19, 18, 18) 100%
-  );
+  background: rgba(0,0,0,.5);
   border-radius: 15px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -33%);
 }
+.el-input__inner{
+    border:none;
+    outline:none;
+    /*outline用于绘制元素周围的线
+    outline：none在这里用途是将输入框的边框的线条使其消失*/
+    background-color: black;
+    background: transparent;
+    /*背景颜色为透明*/
+  }
 .btns {
   opacity: 1;
   display: flex;
@@ -281,8 +341,8 @@ export default {
   margin-left: -100px;
   background: linear-gradient(
     230deg,
-    rgba(233, 234, 238, 0) 0%,
-    rgb(0, 0, 0) 100%
+    rgba(248, 248, 250, 0) 0%,
+    rgb(214, 212, 212) 100%
   );
   box-shadow: -15px 15px 15px rgb(6 17 47 / 70%);
   transition: all 1s;

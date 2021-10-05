@@ -8,8 +8,10 @@ import AOS from "../node_modules/aos/dist/aos.js"
 import "../node_modules/aos/dist/aos.css"
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import Vue_Particles from 'vue-particles'
 Vue.use(mavonEditor)
 Vue.use(AOS)
+Vue.use(Vue_Particles)
 AOS.init();
 
 Vue.prototype.$axios = axios
@@ -46,6 +48,7 @@ new Vue({
 
 
 import Router from 'vue-router'
+import VueParticles from 'vue-particles'
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)

@@ -1,8 +1,13 @@
 <template>
-  <div class="login_container">
-    <div data-aos="zoom-in-down" data-aos-duration="5000">
-      it's me
-    </div>
+  <div class="{login_container : !videoCanPlay}">
+
+     <div class="video-container">
+    <video :style="fixStyle" autoplay loop muted class="fillWidth" v-on:canplay="canplay">
+      <source src="../assets/video/womanBackground.mp4" type="video/mp4"/>
+    </video>
+  </div>
+
+
     <div class="login_box" :class="{isClick: isClick, isClickOver: !isClick}">
       <!--登录表单-->
       <el-form
@@ -91,6 +96,8 @@ export default {
         checkPass: "",
         phonenumber: "",
       },
+      fixStyle:'',
+      videoCanPlay: false,
       isClick: false,
       //表单验证规则
       loginformRules: {
@@ -126,6 +133,12 @@ export default {
     };
   },
   methods: {
+
+    canplay(){
+      this.videoCanPlay = true;
+    },
+
+
     //点击重置按钮，重置登录表单
     resetLoginForm() {
       this.$refs.loginFormRef.resetFields();
@@ -170,6 +183,38 @@ export default {
       this.$router.push("/login");
     },
   },
+
+  mounted: function() {
+    window.onresize = () => {
+  const windowWidth = document.body.clientWidth
+  const windowHeight = document.body.clientHeight
+  const windowAspectRatio = windowHeight / windowWidth
+  let videoWidth
+  let videoHeight
+  if (windowAspectRatio < 0.5625) {
+   videoWidth = windowWidth
+   videoHeight = windowHeight
+   this.fixStyle = {
+   height: windowWidth * 0.5625 + 'px',
+   width: windowWidth + 'px',
+   'margin-bottom': (windowHeight - videoHeight) / 2 + 'px',
+   'margin-left': 'initial'
+   }
+  } 
+  else {
+   videoHeight = windowHeight
+   videoWidth = windowWidth
+   this.fixStyle = {
+   height: windowHeight + 'px',
+   width: windowHeight / 0.5625 + 'px',
+   'margin-left': (windowWidth - videoWidth) / 2 + 'px',
+   'margin-bottom': 'initial'
+   }
+  }
+  }
+  window.onresize()
+  }
+
 };
 </script>
 
@@ -177,21 +222,24 @@ export default {
 .login_container {
   background: url("../assets/star.png");
   background-size: cover;
-  color: rgb(75, 65, 52);
-  font-size: 30px;
-  text-align: center;
   height: 44rem;
   perspective: 500;
   -webkit-perspective: 500;
 }
+
+.video-container {
+  height: 100%;
+  overflow: hidden;
+ }
+ .fillWidth {
+   height: 100%;
+   width: 100%;
+ }
+
 .login_box {
   width: 400px;
   height: 330px;
-  background: linear-gradient(
-    270deg,
-    rgb(126, 124, 124) 0,
-    rgb(19, 18, 18) 100%
-  );
+  background: rgba(0,0,0,.5);
   border-radius: 15px;
   position: absolute;
   top: 50%;
@@ -215,6 +263,7 @@ export default {
   width: 100%;
   justify-content: flex-start;
 }
+
 .isClick{
   animation: animal3 1s linear 1 forwards;
   pointer-events: none;

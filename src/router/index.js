@@ -15,6 +15,8 @@ import Message from '../view/message.vue'
 
 Vue.use(VueRouter)
 
+
+
 const routes = [
   {
     path: '/',

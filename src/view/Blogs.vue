@@ -1,6 +1,26 @@
 <template>
   <div>
     <Header></Header>
+    <vue-particles
+      class="background"
+      color="#B7AACB"
+      :particleOpacity="0.7"
+      :particlesNumber="80"
+      shapeType="star"
+      :particleSize="8"
+      linesColor="#077ABD"
+      :linesWidth="2"
+      :lineLinked="true"
+      :lineOpacity="0.5"
+      :linesDistance="100"
+      :moveSpeed="3"
+      :hoverEffect="true"
+      hoverMode="grab"
+      :clickEffect="true"
+      clickMode="repulse"
+    >
+</vue-particles>
+
     <div class="block">
       <el-timeline>
         <div v-for="(blog, index) in this.blogs" :key="index">
@@ -166,10 +186,17 @@ export default {
 </script>
 
 <style scoped>
+.background{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin-top: 250px;
+}
 .block {
   padding-left: 10px;
   padding-right: 50px;
   padding-top: 300px;
+
 }
 .el-card {
   background: rgb(241, 241, 243);

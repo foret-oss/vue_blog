@@ -1,6 +1,28 @@
 <template>
   <div>
     <Header></Header>
+
+    <vue-particles
+      class="background"
+      color="#B7AACB"
+      :particleOpacity="0.7"
+      :particlesNumber="80"
+      shapeType="star"
+      :particleSize="8"
+      linesColor="#077ABD"
+      :linesWidth="2"
+      :lineLinked="true"
+      :lineOpacity="0.5"
+      :linesDistance="100"
+      :moveSpeed="3"
+      :hoverEffect="true"
+      hoverMode="grab"
+      :clickEffect="true"
+      clickMode="repulse"
+    >
+</vue-particles>
+
+
     <div class="block">
       <el-form
         ref="ruleForm"
@@ -11,10 +33,10 @@
         <el-form-item label="标题" prop="title">
           <el-input
             v-model="ruleForm.title"
-            placeholder="请输入标题"
+            placeholder="请输入文章标题"
           ></el-input>
         </el-form-item>
-        <el-form-item label="内容" prop="content">
+        <el-form-item label="内容" prop="content" class="content">
           <mavon-editor v-model="ruleForm.content"></mavon-editor>
         </el-form-item>
         
@@ -184,7 +206,19 @@ export default {
 </script>
 
 <style scoped>
+.background{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin-top: 250px;
+}
 .block {
   padding-top: 300px;
+  margin-left: 150px;
+  margin-right: 180px;
+}
+.content{
+  min-height: 350px;
+  margin-top: 50px;
 }
 </style>

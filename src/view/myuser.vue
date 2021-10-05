@@ -1,8 +1,30 @@
 <template>
   <div>
     <Header></Header>
+
+    <vue-particles
+      class="background"
+      color="#B7AACB"
+      :particleOpacity="0.7"
+      :particlesNumber="80"
+      shapeType="star"
+      :particleSize="8"
+      linesColor="#077ABD"
+      :linesWidth="2"
+      :lineLinked="true"
+      :lineOpacity="0.5"
+      :linesDistance="100"
+      :moveSpeed="3"
+      :hoverEffect="true"
+      hoverMode="grab"
+      :clickEffect="true"
+      clickMode="repulse"
+    >
+</vue-particles>
+
+
     <el-container class="container">
-      <el-aside width="100px">
+      <el-aside width="300px">
         <el-menu
           class="el-menu-vertical-demo"
           router
@@ -70,6 +92,12 @@ export default {
 </script>
 
 <style scoped>
+.background{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin-top: 250px;
+}
 .el-menu-vertical-demo{
   position: fixed;
   padding-top: 10px;
@@ -79,11 +107,13 @@ export default {
 }
 .el-menu{
   position: fixed;
+  width: 300px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .12), 2px 2px 6px rgba(0, 0, 0, .04);
 }
 .el-aside{
   margin-right: 15px;
 }
 .el-submenu .el-menu-item {
-    min-width: 80px;
+    min-width: 300px;
 }
 </style>
