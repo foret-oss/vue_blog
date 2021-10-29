@@ -3,7 +3,7 @@ import { Button, Form, FormItem, Input, Message, MessageBox,
          Avatar, Divider, Tabs, TabPane, Timeline, TimelineItem, Card,
          Link,Menu,MenuItem,Submenu,Col,Row, Calendar,MenuItemGroup,
         Container,Aside,Main,Pagination, Checkbox, CheckboxGroup,
-    DatePicker, RadioGroup, Radio} from 'element-ui'
+    DatePicker, RadioGroup, Radio,Popover} from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Form)
@@ -35,3 +35,4 @@ Vue.use(DatePicker)
 Vue.use(Radio)
 Vue.use(RadioGroup)
 Vue.use(Row)
+Vue.use(Popover)

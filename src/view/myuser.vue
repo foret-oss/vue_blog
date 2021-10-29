@@ -95,7 +95,7 @@ export default {
 .background{
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   margin-top: 250px;
 }
 .el-menu-vertical-demo{

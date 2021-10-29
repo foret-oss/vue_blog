@@ -110,7 +110,7 @@ export default {
     border-radius: 4px;
   }
    .bg-purple-light {
-    background: rgb(235, 237, 238);
+    background:  #f2f2f2;
     padding-left: 10px;
     padding-top: 10px;
   }

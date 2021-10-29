@@ -126,7 +126,7 @@ export default {
     margin-top: -150px;
     margin-left: 20px;
     margin-right: 50px;
-    background:rgb(235, 237, 238) ;
+    background: #f2f2f2;
     padding: 10px;
     border-radius: 5px;
 }

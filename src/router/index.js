@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+
 import Login from '../components/Login.vue'
 import Blogs from '../view/Blogs.vue'
 import BlogEdit from '../view/BlogEdit.vue'
@@ -12,6 +14,26 @@ import LastBlog from '../view/lastblog.vue'
 import Drafts from '../view/drafts.vue'
 import QandA from '../components/QandA.vue'
 import Message from '../view/message.vue'
+
+
+
+// const Login = () => import(/* webpackChunkName: "group-come" */ '../components/Login.vue')
+// const Register = () => import(/* webpackChunkName: "group-come" */ '../components/register.vue')
+
+// const Blogs = () => import(/* webpackChunkName: "group-blogs" */ '../view/Blogs.vue')
+
+// const BlogEdit = () => import(/* webpackChunkName: "group-edit" */ '../view/BlogEdit.vue')
+
+// const BlogDetail = () => import(/* webpackChunkName: "group-blogDetails" */ '../view/BlogDetail.vue')
+// const LastBlog = () => import(/* webpackChunkName: "group-blogDetails" */ '../view/lastblog.vue')
+// const Drafts = () => import(/* webpackChunkName: "group-blogDetails" */ '../view/drafts.vue')
+// const QandA = () => import(/* webpackChunkName: "group-blogDetails" */ '../components/QandA.vue')
+
+// const Myuser = () => import(/* webpackChunkName: "group-user" */ '../view/myuser.vue')
+// const changeMessage = () => import(/* webpackChunkName: "group-user" */ '../view/changeMessage.vue')
+// const Account = () => import(/* webpackChunkName: "group-user" */ '../view/account.vue')
+// const Message = () => import(/* webpackChunkName: "group-user" */ '../view/message.vue')
+
 
 Vue.use(VueRouter)
 
@@ -55,7 +77,7 @@ const routes = [
         path: '/myuser',
         name: 'Myuser',
         component: Myuser,
-        redirect:'/changeMessage',
+        redirect:'/message',
         children: [
           { path: '/changeMessage', component: changeMessage},
           { path: '/message', component: Message},

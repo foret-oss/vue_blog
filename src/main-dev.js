@@ -15,7 +15,7 @@ Vue.use(Vue_Particles)
 AOS.init();
 
 Vue.prototype.$axios = axios
-axios.defaults.baseURL = "http://159.75.69.199:8080"  
+axios.defaults.baseURL = "http://159.75.69.199:8080"
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.withCredentials = false
@@ -48,7 +48,6 @@ new Vue({
 
 
 import Router from 'vue-router'
-import VueParticles from 'vue-particles'
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)

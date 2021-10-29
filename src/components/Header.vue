@@ -2,18 +2,22 @@
 <div>
   <div class="avatarBackground">
     <div class="avatarbottom"></div>
-        <div class="avatarBox" @click="login">
+
+       <div class="avatarBox" @click="login">
           <img src="../assets/bear.jpg" class="avatar">
        </div>
+        
        <p class="username"> {{this.user.username}}</p>
   </div>
   
    
   <div class="header">
         <span @click="click3" :class="{page: page3}">首页</span>
+        <el-divider v-show="hasLogin" direction="vertical"></el-divider>
+        <span v-show="hasLogin" @click="click2" :class="{page: page2}">编辑博客</span>
+        <div v-show="hasLogin">
         <el-divider direction="vertical"></el-divider>
-        <span @click="click2" :class="{page: page2}">编辑博客</span>
-        <el-divider direction="vertical"></el-divider>
+        </div>
         <span @click="click1" :class="{page: page1}">博客管理</span>
         <el-divider direction="vertical"></el-divider>
         <span v-show="! hasLogin" @click="login" :class="{page: page4}">登录</span>

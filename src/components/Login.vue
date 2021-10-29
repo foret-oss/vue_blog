@@ -138,9 +138,14 @@ export default {
         }
 
         this.$axios
-          .post("/login", this.loginForm)
+          .post("/login", {
+            username: this.loginForm.username,
+            password: this.loginForm.password
+          })
           .then((res) => {
             console.log("请求登录成功，返回数据", res);
+
+
             if (res.data.code == 455) {
               console.log("用户不存在", res.data.message);
               
@@ -164,16 +169,22 @@ export default {
                   this.goBack = true;
                 });
           }, 1500);
-
           return;
           } 
-          else if (res.data.code === 456)
-              return this.$message.error("密码不正确！");
+
+
+          else if (res.data.code === 456){
 
             setTimeout(() => {
                 this.hasClick = false;
                 this.goBack = true;
-            }, 2500);
+            }, 1500);
+
+            return this.$message.error("密码不正确！");
+          }
+              
+
+            
 
             this.$message.success("登录成功！");
             window.sessionStorage.setItem("token", res.data.token);

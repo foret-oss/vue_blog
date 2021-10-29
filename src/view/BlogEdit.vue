@@ -30,7 +30,7 @@
         :rules="rules"
         label-width="80px"
       >
-        <el-form-item label="标题" prop="title">
+        <el-form-item label="标题" prop="title" class="title">
           <el-input
             v-model="ruleForm.title"
             placeholder="请输入文章标题"
@@ -182,6 +182,7 @@ export default {
       });
     },
   },
+
   created() {
     const blogId = this.$route.query.id;
     console.log("编辑页面的id", blogId);
@@ -202,6 +203,8 @@ export default {
         });
     }
   },
+
+
 };
 </script>
 
@@ -209,16 +212,22 @@ export default {
 .background{
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   margin-top: 250px;
 }
 .block {
   padding-top: 300px;
   margin-left: 150px;
   margin-right: 180px;
+  padding-right: 20px;
+  background: #f2f2f2;
+  border-radius: 20px;
 }
 .content{
   min-height: 350px;
   margin-top: 50px;
+}
+.title{
+
 }
 </style>

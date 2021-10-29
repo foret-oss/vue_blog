@@ -162,10 +162,14 @@ export default {
           }, 1500);
           return;}
 
+
+          console.log("注册名单：",this.loginForm.userName,this.loginForm.password);
+
         this.$axios
           .post("/register", {
-            username: this.loginForm.userName,
-            password: this.loginForm.password,
+            Username: this.loginForm.userName,
+            Password: this.loginForm.password,
+            Mobile: this.loginForm.phonenumber
           })
           .then((res) => {
             console.log("请求注册成功，返回数据", res);

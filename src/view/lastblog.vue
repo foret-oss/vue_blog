@@ -126,7 +126,7 @@ export default {
   width: 100%;
   height: 100%;
   top: 0;
-  position: absolute;
+  position: fixed;
   margin-top: 250px;
 }
 .title{

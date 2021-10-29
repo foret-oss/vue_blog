@@ -39,7 +39,7 @@
               <div class="icon">
                 <el-link
                   icon="el-icon-edit el-icon--right"
-                  v-show="hasLogin"
+                  v-show="hasLogin && blog.fields.username == username"
                   @click="update(index)"
                   >编辑
                 </el-link>
@@ -50,7 +50,7 @@
                 >
                 <el-link
                   icon="el-icon-delete el-icon--right"
-                  v-show="hasLogin"
+                  v-show="hasLogin && blog.fields.username == username"
                   @click="deleteBlog(index)"
                   >删除</el-link
                 >
@@ -79,6 +79,7 @@ export default {
     return {
       blogs: [],
       hasLogin: false,
+      username: ''
     };
   },
   methods: {
@@ -153,6 +154,7 @@ export default {
     const token = window.sessionStorage.getItem("token");
     if (token) {
       this.hasLogin = true;
+      this.username = window.sessionStorage.getItem("username");
     }
     this.$axios
       .get("/all")
@@ -189,7 +191,7 @@ export default {
 .background{
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   margin-top: 250px;
 }
 .block {

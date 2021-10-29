@@ -5,14 +5,14 @@
     <vue-particles
       class="background"
       color="#B7AACB"
-      :particleOpacity="0.7"
+      :particleOpacity="0.6"   
       :particlesNumber="80"
       shapeType="star"
       :particleSize="8"
       linesColor="#077ABD"
       :linesWidth="2"
       :lineLinked="true"
-      :lineOpacity="0.5"
+      :lineOpacity="0.3"
       :linesDistance="100"
       :moveSpeed="3"
       :hoverEffect="true"
@@ -137,7 +137,7 @@ export default {
 .background{
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   margin-top: 260px;
 }
 .totolBlogs{
